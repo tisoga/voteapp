@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="0">
+
+        <tr>
+            <th colspan="3">
+                <h2>{{pertanyaan.pertanyaan}}</h2>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="3">Silahkan Voting</th>
+        </tr>
+        <form method="POST" id="voting">
+        {% csrf_token %}
+        {% if pertanyaan.kumpulanpilihan %}
+            {% for pilihan in pertanyaan.kumpulanpilihan %}
+            <tr>
+                <td><h2>{{pilihan}} : </h2></td>
+                <td><h2>{{pilihan.vote}}</h2></td>
+                <td>
+                    <button name="vote" value="{{pilihan.id_pilihan}}" type="submit" form="voting">
+                        Vote
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3"><h2 style="text-align: center;">Belum Ada Pilihan</h2></td>
+        </tr>
+        <tr>
+            <td><h2>Silahkan Tambahkan Pilihan</h2></td>
+        </tr>
+        {% endif %}
+        
+        </form>
+    </table>
+    <a href="{% url 'vote:TambahPilihan' id %}"><button>Tambahkan Pilihan</button></a>
+    <p>
+</body>
+
+</html>

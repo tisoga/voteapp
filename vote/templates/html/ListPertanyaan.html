@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<h2>List Pertanyaan</h2>
+	<table>
+		<tr>
+			<th>No</th>
+			<th>Pertanyaan</th>
+			<th>Action</th>
+		</tr>
+	{% for pertanyaan in kumpulan_pertanyaan %}
+		<tr>
+			<td><h2>{{forloop.counter}}</h2></td>
+			<td><h2>{{pertanyaan.pertanyaan}}</h2></td>
+			<td>
+				<a href="{% url 'vote:Voting' pertanyaan.id_pertanyaan %}">
+					<button>Ikuti Voting</button>
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+	<a href="{% url 'vote:TambahPertanyaan' %}"><button>Tambah Soal</button></a>
+</body>
+
+</html>
