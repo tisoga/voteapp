@@ -85,13 +85,15 @@ def DetailVoteAPI(request, id_pertanyaan):
             return Response(PilihanSerializer(pilihan).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        try:
-            id_pilihan = request.data['id_pilihan']
-            pilihan = get_object_or_404(PilihanModel, pk=id_pilihan)
-            pilihan.delete()
-            return Response({'detail': 'Deleted'})
-        except KeyError:
-            raise NotFound()
+        # try:
+        #     id_pilihan = request.data['id_pilihan']
+        #     pilihan = get_object_or_404(PilihanModel, pk=id_pilihan)
+        #     pilihan.delete()
+        #     return Response({'detail': 'Deleted'})
+        # except KeyError:
+        #     raise NotFound()
+        pertanyaan.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
     elif request.method == 'PATCH':
         try:
             id_pilihan = request.data['id_pilihan']
