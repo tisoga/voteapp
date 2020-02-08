@@ -62,7 +62,13 @@ def ListVoteAPI(request):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        serializer = PertanyaanSerializer()
+        try:
+            id_pertanyaaan = request.data['id_pertanyaan']
+            pilihan = get_object_or_404(PertanyaanModel, pk=id_pertanyaaan)
+            pilihan.delete()
+            return Response({'detail': 'Deleted'})
+        except KeyError:
+            raise NotFound()
 
 
 @api_view(['GET', 'POST', 'DELETE', 'PATCH'])

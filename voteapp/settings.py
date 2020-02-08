@@ -25,7 +25,7 @@ SECRET_KEY = 'fnx(t*#rs6pd*elu&hfcah4a_tfd@ku360%2ef$u-y0ou()yr1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
