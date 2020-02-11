@@ -41,7 +41,7 @@ class PilihanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PilihanModel
-        fields = ('id_pilihan','pilihan')
+        fields = ('id_pilihan','pilihan','vote')
 
 class VoteSerializer(serializers.ModelSerializer):
 
