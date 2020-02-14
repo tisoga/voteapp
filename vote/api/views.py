@@ -80,6 +80,7 @@ def DetailVoteAPI(request, id_pertanyaan):
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = PilihanSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             pilihan = serializer.save(pertanyaan=pertanyaan)
             return Response(PilihanSerializer(pilihan).data)
@@ -127,3 +128,11 @@ def VotingAPI(request, id_pertanyaan):
                 "status": "Vote Sukses"
             })
         return Response(serializer.errors)
+
+@api_view(['DELETE'])
+def HapusPilihanAPI(request, id_pertanyaan, id_pilihan):
+    pertanyaan = get_object_or_404(PertanyaanModel, pk=id_pertanyaan)
+    pilihan = get_object_or_404(PilihanModel, pk=id_pilihan , pertanyaan=pertanyaan)
+    if request.method == 'DELETE':
+        pilihan.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)

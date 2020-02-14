@@ -9,5 +9,6 @@ urlpatterns = [
     path('auth/user/', views.UserAPI, name='api_user'),
     path('data_vote/', views.ListVoteAPI, name='api_data'),
     path('data_vote/<int:id_pertanyaan>/', views.DetailVoteAPI, name='api_detail'),
+    path('data_vote/<int:id_pertanyaan>/<int:id_pilihan>', views.HapusPilihanAPI, name='api_hapus_pilihan'),
     path('data_vote/<int:id_pertanyaan>/vote/', views.VotingAPI, name='api_vote')
 ]
