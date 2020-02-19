@@ -41,7 +41,7 @@ def LoginAPI(request):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def UserAPI(request):
     if request.method == 'GET':
         serializer = UserSerializer(request.user)
@@ -49,7 +49,7 @@ def UserAPI(request):
 
 # API
 @api_view(['GET', 'POST', "DELETE"])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def ListVoteAPI(request):
     if request.method == 'GET':
         pertanyaan = PertanyaanModel.objects.all()
@@ -72,7 +72,7 @@ def ListVoteAPI(request):
 
 
 @api_view(['GET', 'POST', 'DELETE', 'PATCH'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def DetailVoteAPI(request, id_pertanyaan):
     pertanyaan = get_object_or_404(PertanyaanModel, pk=id_pertanyaan)
     if request.method == 'GET':
@@ -109,7 +109,7 @@ def DetailVoteAPI(request, id_pertanyaan):
 
 
 @api_view(['GET', 'POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def VotingAPI(request, id_pertanyaan):
     pertanyaan = get_object_or_404(PertanyaanModel, pk=id_pertanyaan)
     if request.method == 'GET':
