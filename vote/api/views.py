@@ -130,6 +130,7 @@ def VotingAPI(request, id_pertanyaan):
         return Response(serializer.errors)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def HapusPilihanAPI(request, id_pertanyaan, id_pilihan):
     pertanyaan = get_object_or_404(PertanyaanModel, pk=id_pertanyaan)
     pilihan = get_object_or_404(PilihanModel, pk=id_pilihan , pertanyaan=pertanyaan)
